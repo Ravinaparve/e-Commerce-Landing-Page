@@ -1,0 +1,232 @@
+:root {
+    --clr-light: var(--clr-light)
+}
+
+
+/**CSS Reset**/
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans', sans-serif;
+    margin: 0;
+    line-height: 1.6;
+}
+
+img,
+picture {
+    max-width: 100%;
+    display: block;
+}
+
+h1,
+h2,
+h3,
+p {
+    margin: 0;
+}
+
+.container {
+    width: 85%;
+    max-width: 65em;
+    /*1040px*/
+    margin: 0 auto;
+}
+
+.split {
+    display: flex;
+    gap: 2em;
+    justify-content: center;
+    /*this can be used here to center the last item after wrapped instead of being on left*/
+    flex-wrap: wrap;
+    /* flex wrap is used here instead of flex direction column to stack element one below the other in mobile*/
+}
+
+.split>* {
+    flex-basis: 30%;
+    min-width: 15em;
+    /*the flex items cant have width less than 15em*/
+}
+
+section {
+    padding: 7em 0;
+}
+
+.spacing>*+* {
+    /*used to apply uniform spacing on the sibiling elements starting from 2nd*/
+    margin-top: var(--spacer, 2rem);
+}
+
+.btn {
+    display: inline-block;
+    text-decoration: none;
+    background: var(--clr-light, blue);
+    color: var(--clr-text, white);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1.125rem;
+    padding: .5em 1.25em;
+    border-radius: .25em;
+    transition: transform 250ms ease-in-out, opacity 250ms linear;
+}
+
+.btn:hover,
+.btn:focus {
+    transform: scale(1.1);
+    opacity: .9;
+}
+
+.primary-title {
+    font-size: 4rem;
+    /*if the browser doesnt have support for clamp(), the font-size will be 4 rem*/
+    font-size: clamp(3rem, calc(5vw + 1rem), 4.5rem);
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.section-title {
+    text-align: center;
+    font-size: clamp(2.5rem, calc(5vw+1rem), 4rem);
+    line-height: 1;
+    color: #17353d;
+    margin-bottom: 5rem;
+}
+
+.hero {
+    color: white;
+    text-align: center;
+    padding: 15em 0;
+}
+
+@supports(background-blend-mode: multiply) {
+    .hero {
+        background-image: url(../img/shoe-3.png), radial-gradient(#444, #111);
+        background-blend-mode: multiply;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+}
+
+.featured {
+    background: #eee;
+}
+
+.featured__item {
+    position: relative;
+    /*position added just for psuedo elements that are applied on this class*/
+    transform: scale(.85);
+    transition: transform 230ms ease-in-out;
+    text-decoration: none;
+    color: #333;
+    text-align: center;
+}
+
+.featured__details {
+    opacity: 0;
+    transition: opacity 250ms linear;
+}
+
+.featured__details span {
+    display: block;
+    font-weight: 700;
+    font-size: 2.5rem;
+    line-height: 1.2;
+}
+
+.featured__item:hover,
+.featured__item:focus {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+
+.featured__item:hover .featured__details,
+.featured__item:focus .featured__details {
+    opacity: 1;
+    text-shadow: 0 0 2em rgba(#fff, 1);
+}
+
+.featured__item::after {
+    content: '';
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    padding: 75% 75% 0 0;
+    /*padding always considers width. here padding take up full width of the parent.*/
+    border-radius: 50%;
+    background-color: #2193b0;
+    z-index: -1;
+}
+
+
+/* Our products section */
+
+.product {
+    background: radial-gradient(var(--clr-inner, orange), var(--clr-outer, purple));
+    padding: 3rem;
+    border-radius: 3em;
+    margin-bottom: 5em;
+    text-align: center;
+}
+
+.product__image {
+    margin: -5em 0 0 0;
+}
+
+.product__title {
+    text-transform: uppercase;
+    font-size: 4rem;
+    font-size: clamp(2.5rem, calc(5vw+1rem), 5.5rem);
+    line-height: 1;
+    color: #fff;
+    text-shadow: 0 0 .2em rgba(#000, .2);
+}
+
+@media (min-width:45em) {
+    .product {
+        text-align: left;
+        margin-bottom: 9em;
+    }
+    .product__title {
+        margin: 0;
+    }
+    .product__image {
+        float: right;
+        width: 64%;
+        shape-outside: url(../img/shoe-1.png);
+        shape-margin: 1em;
+        margin: 0 -5em 0 0;
+    }
+    .shoe-left .product__image {
+        shape-outside: url(../img/shoe-2.png);
+        float: left;
+        margin: 0 0 0 -5em;
+    }
+}
+
+.hero {
+    /*changing the color for hero button*/
+    --clr-light: #faa700;
+}
+
+.shoe-red {
+    --clr-inner: #faa700;
+    --clr-outer: #e48d00;
+    --clr-light: #a1173c;
+}
+
+.shoe-white {
+    --clr-inner: #fce4b3;
+    --clr-outer: #eac886;
+    --clr-light: #2f4858;
+}
+
+.shoe-blue {
+    --clr-inner: #6dd5ed;
+    --clr-outer: #2193b0;
+    --clr-light: #008951;
+}
